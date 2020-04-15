@@ -5,8 +5,6 @@ let calais
 let port
 let itinerary
 let ship
-let titanic
-let queenMary
 
 beforeEach(() => {
     dover = new Port('dover'),
@@ -14,13 +12,11 @@ beforeEach(() => {
     port = new Port('dover'),
     itinerary = new Itinerary([dover, calais]),
     ship = new Ship(itinerary)
-    titanic = {},
-    queenMary = {}
 });
 
 describe('Ports', () => {
     it('can add a ship', () => {
-        const ship = {};
+        const ship = jest.fn();
 
         port.addShip(ship);
 
@@ -28,15 +24,13 @@ describe('Ports', () => {
     });
 
     it('can remove a ship', () => {
-       
+        const titanic = jest.fn()
+        const queenMary = jest.fn()
+        
         port.addShip(titanic);
         port.addShip(queenMary);
         port.removeShip(queenMary);
 
         expect(port.ships).toEqual([titanic]);
     });
-
-    it('gets added to port on instantiation', () => {
-        expect(dover.ships).toContain(ship);
-      });
 });
